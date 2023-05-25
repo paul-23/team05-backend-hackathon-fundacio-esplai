@@ -6,6 +6,8 @@ import com.fundacio.esplai.hacktahon.model.exceptions.EmailAlreadyExistsExceptio
 import com.fundacio.esplai.hacktahon.model.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -17,7 +19,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class AuthController {
 
-    private final AuthService userService;
+	@Autowired
+    AuthService userService;
 
     @PostMapping("/auth/register")
     public ResponseEntity<String> register(@RequestBody @Valid RegisterRequest request) {
